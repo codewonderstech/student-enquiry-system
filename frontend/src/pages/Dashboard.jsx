@@ -3,22 +3,31 @@ import Table from "../components/Table";
 
 function Dashboard() {
   const [search, setSearch] = useState("");
+  const [courseFilter, setCourseFilter] = useState("All");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const students = [
     { id: 1, name: "Rohan Sharma", course: "React" },
     { id: 2, name: "Neha Patil", course: "Python" },
     { id: 3, name: "Karan Verma", course: "Flask" },
     { id: 4, name: "Pooja Singh", course: "Java" },
-    { id: 5, name: "Amit Joshi", course: "React" },
-    { id: 6, name: "Sneha Kulkarni", course: "Python" },
-    { id: 7, name: "Vikas Rao", course: "Node JS" },
-    { id: 8, name: "Priya Mehta", course: "React" },
-    { id: 9, name: "Aditya More", course: "Java" },
-    { id: 10, name: "Komal Desai", course: "Flask" }
+    { id: 5, name: "Amit Joshi", course: "React" }
   ];
 
-  const filteredData = students.filter((item) =>
+  let filteredData = students.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  if (courseFilter !== "All") {
+    filteredData = filteredData.filter(
+      (item) => item.course === courseFilter
+    );
+  }
+
+  filteredData.sort((a, b) =>
+    sortOrder === "asc"
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name)
   );
 
   return (
@@ -30,14 +39,30 @@ function Dashboard() {
         placeholder="Search student..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{
-          padding: "10px",
-          width: "250px",
-          marginBottom: "20px",
-          borderRadius: "5px",
-          border: "1px solid gray"
-        }}
       />
+
+      <select
+        value={courseFilter}
+        onChange={(e) => setCourseFilter(e.target.value)}
+        style={{ marginLeft: "10px" }}
+      >
+        <option>All</option>
+        <option>React</option>
+        <option>Python</option>
+        <option>Java</option>
+        <option>Flask</option>
+      </select>
+
+      <button
+        onClick={() =>
+          setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+        }
+        style={{ marginLeft: "10px" }}
+      >
+        Sort {sortOrder === "asc" ? "A-Z" : "Z-A"}
+      </button>
+
+      <br /><br />
 
       <Table data={filteredData} />
     </div>
