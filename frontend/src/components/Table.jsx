@@ -1,43 +1,85 @@
 import React from "react";
 
-function Table({ data }) {
+function Table() {
+  const enquiries = [
+    {
+      id: 1,
+      name: "Rahul Sharma",
+      email: "rahul@gmail.com",
+      course: "React Development",
+      status: "Pending",
+    },
+    {
+      id: 2,
+      name: "Priya Verma",
+      email: "priya@gmail.com",
+      course: "Python Full Stack",
+      status: "Completed",
+    },
+    {
+      id: 3,
+      name: "Aman Gupta",
+      email: "aman@gmail.com",
+      course: "Flask Backend",
+      status: "Pending",
+    },
+  ];
+
   return (
     <table
-      border="1"
-      cellPadding="10"
       style={{
-        borderCollapse: "collapse",
         width: "100%",
-        textAlign: "left"
+        borderCollapse: "collapse",
       }}
     >
-      <thead style={{ backgroundColor: "#f2f2f2" }}>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Course</th>
+      <thead>
+        <tr style={{ backgroundColor: "#2563eb", color: "white" }}>
+          <th style={styles.th}>ID</th>
+          <th style={styles.th}>Name</th>
+          <th style={styles.th}>Email</th>
+          <th style={styles.th}>Course</th>
+          <th style={styles.th}>Status</th>
         </tr>
       </thead>
 
       <tbody>
-        {data.length > 0 ? (
-          data.map((student) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>{student.name}</td>
-              <td>{student.course}</td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="3" style={{ textAlign: "center" }}>
-              No Data Found
+        {enquiries.map((item) => (
+          <tr key={item.id}>
+            <td style={styles.td}>{item.id}</td>
+            <td style={styles.td}>{item.name}</td>
+            <td style={styles.td}>{item.email}</td>
+            <td style={styles.td}>{item.course}</td>
+            <td style={styles.td}>
+              <span
+                style={{
+                  backgroundColor:
+                    item.status === "Completed" ? "green" : "orange",
+                  color: "white",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                }}
+              >
+                {item.status}
+              </span>
             </td>
           </tr>
-        )}
+        ))}
       </tbody>
     </table>
   );
 }
+
+const styles = {
+  th: {
+    padding: "15px",
+    textAlign: "left",
+  },
+
+  td: {
+    padding: "15px",
+    borderBottom: "1px solid #ddd",
+  },
+};
 
 export default Table;

@@ -1,70 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "../components/Table";
 
 function Dashboard() {
-  const [search, setSearch] = useState("");
-  const [courseFilter, setCourseFilter] = useState("All");
-  const [sortOrder, setSortOrder] = useState("asc");
-
-  const students = [
-    { id: 1, name: "Rohan Sharma", course: "React" },
-    { id: 2, name: "Neha Patil", course: "Python" },
-    { id: 3, name: "Karan Verma", course: "Flask" },
-    { id: 4, name: "Pooja Singh", course: "Java" },
-    { id: 5, name: "Amit Joshi", course: "React" }
-  ];
-
-  let filteredData = students.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  if (courseFilter !== "All") {
-    filteredData = filteredData.filter(
-      (item) => item.course === courseFilter
-    );
-  }
-
-  filteredData.sort((a, b) =>
-    sortOrder === "asc"
-      ? a.name.localeCompare(b.name)
-      : b.name.localeCompare(a.name)
-  );
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Admin Dashboard</h1>
-
-      <input
-        type="text"
-        placeholder="Search student..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      <select
-        value={courseFilter}
-        onChange={(e) => setCourseFilter(e.target.value)}
-        style={{ marginLeft: "10px" }}
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f4f6f9",
+        padding: "30px",
+        fontFamily: "Arial",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "#1e293b",
+          color: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          marginBottom: "20px",
+        }}
       >
-        <option>All</option>
-        <option>React</option>
-        <option>Python</option>
-        <option>Java</option>
-        <option>Flask</option>
-      </select>
+        <h1>Student Enquiry Dashboard</h1>
+        <p>Manage student enquiries efficiently</p>
+      </div>
 
-      <button
-        onClick={() =>
-          setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-        }
-        style={{ marginLeft: "10px" }}
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0px 2px 10px rgba(0,0,0,0.1)",
+        }}
       >
-        Sort {sortOrder === "asc" ? "A-Z" : "Z-A"}
-      </button>
+        <input
+          type="text"
+          placeholder="Search student..."
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "20px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            fontSize: "16px",
+          }}
+        />
 
-      <br /><br />
-
-      <Table data={filteredData} />
+        <Table />
+      </div>
     </div>
   );
 }
