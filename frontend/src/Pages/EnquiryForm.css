@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  padding: 20px;
+}
+
+.card {
+  width: 450px;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  text-align: center;
+  color: #0077b6;
+  margin-bottom: 15px;   
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+  font-weight: bold;     /* makes text bold */
+  font-size: 18px;       /* optional better look */
+}
+
+.step h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.floating {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.floating.icon span {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.floating input,
+.floating select,
+.floating textarea {
+  width: 100%;
+  padding: 12px 12px 12px 35px;
+  border-radius: 10px;
+  border: 1px solid #d0e6f6;
+  background: #f8fcff;
+  color: #222;
+  font-size: 14px;
+  outline: none;
+}
+
+.floating select option {
+  color: black;
+  background: white;
+}
+
+.floating input:focus,
+.floating select:focus,
+.floating textarea:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
+}
+
+.floating label {
+  position: absolute;
+  top: 12px;
+  left: 35px;
+  color: #777;
+  transition: 0.3s;
+  background: white;
+  padding: 0 5px;
+  pointer-events: none;
+}
+
+.floating input:focus + label,
+.floating input:not(:placeholder-shown) + label,
+.floating textarea:focus + label,
+.floating textarea:not(:placeholder-shown) + label,
+.floating select:focus + label,
+.floating select:not([value=""]) + label {
+  top: -8px;
+  left: 30px;
+  font-size: 12px;
+  color: #0077b6;
+}
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
